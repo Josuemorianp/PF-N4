@@ -17,7 +17,12 @@ class UsuariosFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            "id_persona"=> $this->faker->numberBetween(1,10),
+            "usuario"=> $this->faker->userName(),
+            "clave"=> $this->faker->password(),
+            "fecha"=> $this->faker->date(),
+            "id_rol"=> $this->faker->numberBetween(1, 3),
+            "habilitado"=> $this->faker->randomElement(['si', 'no']),
         ];
     }
 }

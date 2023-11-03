@@ -20,7 +20,7 @@ class PaginasFactory extends Factory
             "descripcion" => $this->faker->sentence(),
             "icono"=> $this->faker->sentence(),
             "tipo"=> $this->faker->randomElement([1,2,3]),
-            "habilitado"=> $this->faker->randomElements(["si", "no"]),
+            "habilitado"=> $this->faker->randomElement(['si', 'no']),
         ];
     }
 }

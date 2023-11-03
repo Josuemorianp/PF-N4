@@ -14,14 +14,12 @@ return new class extends Migration
         Schema::create('enlaces', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('id_pagina');
-            $table->foreign('id_pagina')->references('id')->on('paginas');
+            $table->foreign('id_pagina')->references('id')->on('paginas')->onDelete('cascade')->onUpdate('cascade');
             $table->unsignedBigInteger('id_rol');
-            $table->foreign('id_rol')->references('id')->on('roles');
+            $table->foreign('id_rol')->references('id')->on('roles')->onDelete('cascade')->onUpdate('cascade');
             $table->string('descripcion');
-            $table->timestamp('fecha_creacion')->useCurrent();
-            $table->timestamp('fecha_modificacion')->useCurrent();
-            $table->timestamp('usuario_creacion')->useCurrent();
-            $table->timestamp('usuario_modificacion')->useCurrent();
+            $table->timestamp('usuario_creacion')->useCurrent()->nullable();
+            $table->timestamp('usuario_modificacion')->useCurrent()->nullable();
             $table->timestamps();
         });
     }

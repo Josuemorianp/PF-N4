@@ -14,19 +14,19 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $roles = new BitacorasSeeder();	
+        $roles = new RolesSeeder();	
         $roles->run();
 
-        $personas = new BitacorasSeeder();	
+        $personas = new PersonasSeeder();	
         $personas->run();
 
-        $paginas = new BitacorasSeeder();	
+        $paginas = new PaginasSeeder();	
         $paginas->run();
 
-        $enlaces = new BitacorasSeeder();	
+        $enlaces = new EnlacesSeeder();	
         $enlaces->run();
 
-        $usuarios = new BitacorasSeeder();	
+        $usuarios = new UsuariosSeeder();	
         $usuarios->run();
         
         $bitacoras = new BitacorasSeeder();	

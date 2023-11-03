@@ -17,10 +17,8 @@ return new class extends Migration
             $table->string('segundo_nombre')->nullable();
             $table->string('primer_apellido');
             $table->string('segundo_apellido')->nullable();
-            $table->timestamp('fecha_creacion')->useCurrent();
-            $table->timestamp('fecha_modificacion')->useCurrent();
-            $table->timestamp('usuario_creacion')->useCurrent();
-            $table->timestamp('usuario_modificacion')->useCurrent();
+            $table->timestamp('usuario_creacion')->useCurrent()->nullable();
+            $table->timestamp('usuario_modificacion')->useCurrent()->nullable();
             $table->timestamps();
         });
     }
