@@ -15,12 +15,14 @@ return new class extends Migration
             $table->id();
             $table->string('bitacora');
             $table->unsignedBigInteger('id_usuario');
-            $table->foreign('id_usuario')->references('id')->on('usuarios');
+            $table->foreign('id_usuario')->references('id')->on('usuarios')->onDelete('cascade')->onUpdate('cascade');
             $table->date('fecha');
             $table->time('hora');
             $table->string('ip');
             $table->string('so');
-            $table->string('navegador');
+            $table->string('navegador'); 
+            $table->date('usuario_creacion')->useCurrent()->nullable();
+            $table->date('usuario_modificacion')->useCurrent()->nullable();
             $table->timestamps();
         });
     }

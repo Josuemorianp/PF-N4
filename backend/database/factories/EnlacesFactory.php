@@ -17,7 +17,9 @@ class EnlacesFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            "id_pagina"=> $this->faker->numberBetween(1,10),
+            "id_rol"=> $this->faker->numberBetween(1,10),
+            "descripcion"=> $this->faker->sentence(),
         ];
     }
 }

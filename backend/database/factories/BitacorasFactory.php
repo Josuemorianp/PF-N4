@@ -18,6 +18,7 @@ class BitacorasFactory extends Factory
     {
         return [
             "bitacora"=> $this->faker->randomElement(['Ingreso', 'Salidas', 'Intento de Conexión']),
+            "id_usuario"=> $this->faker->numberBetween(1,10),
             "fecha"=> $this->faker->date(),
             "hora"=> $this->faker->time(),
             "ip"=> $this->faker->ipv4(),

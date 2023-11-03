@@ -14,17 +14,15 @@ return new class extends Migration
         Schema::create('usuarios', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('id_persona');
-            $table->foreign('id_persona')->references('id')->on('personas');
+            $table->foreign('id_persona')->references('id')->on('personas')->onDelete('cascade')->onUpdate('cascade');
             $table->string('usuario')->unique();
             $table->string('clave');
             $table->date('fecha')->nullable();
             $table->unsignedBigInteger('id_rol');
-            $table->foreign('id_rol')->references('id')->on('roles');
-            $table->char('habilitado', 1)->default(1);
-            $table->date('fecha_creacion')->useCurrent();
-            $table->date('fecha_modificacion')->useCurrent();
-            $table->date('usuario_creacion')->useCurrent();
-            $table->date('usuario_modificacion')->useCurrent();
+            $table->foreign('id_rol')->references('id')->on('roles')->onDelete('cascade')->onUpdate('cascade');
+            $table->char('habilitado');
+            $table->date('usuario_creacion')->useCurrent()->nullable();
+            $table->date('usuario_modificacion')->useCurrent()->nullable();
             $table->timestamps();
         });
     }

@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\enlaces;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -12,6 +13,6 @@ class EnlacesSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        enlaces::factory(10)->create();
     }
 }

@@ -20,10 +20,8 @@ return new class extends Migration
             $table->string('icono');
             $table->string('tipo');
             $table->string('habilitado');
-            $table->timestamp('fecha_creacion')->useCurrent();
-            $table->timestamp('fecha_modificacion')->useCurrent();
-            $table->timestamp('usuario_creacion')->useCurrent();
-            $table->timestamp('usuario_modificacion')->useCurrent();
+            $table->timestamp('usuario_creacion')->useCurrent()->nullable();
+            $table->timestamp('usuario_modificacion')->useCurrent()->nullable();
             $table->timestamps();
         });
     }

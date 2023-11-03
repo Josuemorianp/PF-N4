@@ -7,59 +7,77 @@ use Illuminate\Http\Request;
 
 class UsuariosController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        $usuarios = usuarios::all();
+        return $usuarios;
     }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'id_persona' => 'required',
+            'usuario' => 'required',
+            'clave' => 'required',
+            'fecha' => 'required',
+            'id_rol' => 'required',
+            'habilitado' => 'required',
+        ]);
+
+        $usuarios = new usuarios();
+        $usuarios->id_persona = $request->input('id_persona');
+        $usuarios->usuario = $request->input('usuario');
+        $usuarios->clave = $request->input('clave');
+        $usuarios->fecha = $request->input('fecha');
+        $usuarios->id_rol = $request->input('id_rol');
+        $usuarios->habilitado = $request->input('habilitado');
+        
+        $usuarios->save();
+        return response()->json(["Se agrego correctamente el Usuario"], 200); 
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(usuarios $usuarios)
+    public function show($id)
     {
-        //
+        $usuarios = usuarios::find($id);
+        if(!$usuarios){
+            return response()->json(["message"=> "Usuario no encontrado"],404);
+        }
+
+        return response()->json($usuarios);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(usuarios $usuarios)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'id_persona' => 'required',
+            'usuario' => 'required',
+            'clave' => 'required',
+            'fecha' => 'required',
+            'id_rol' => 'required',
+            'habilitado' => 'required',
+        ]);
+
+        $usuarios = usuarios::find($id);
+        if(!$usuarios){
+            return response()->json(["message"=> "Usuario no encontrado"],404);
+        }
+
+        $usuarios->id_persona= $request->input('id_persona');
+        $usuarios->usuario= $request->input('usuario');
+        $usuarios->clave= $request->input('clave');
+        $usuarios->fecha = $request->input('fecha');
+        $usuarios->id_rol = $request->input('id_rol');
+        $usuarios->habilitado = $request->input('habilitado');
+        $usuarios->save();
+        return response()->json($usuarios, 200);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, usuarios $usuarios)
+    public function destroy($id)
     {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(usuarios $usuarios)
-    {
-        //
+        $usuarios = usuarios::find($id);
+        if(!$usuarios){
+            return response()->json(["message"=> "Usuario no encontrado"],404);
+        }
+        $usuarios->delete($id);
+        return response()->json(["message" => "Usuario eliminado"], 200);
     }
 }
